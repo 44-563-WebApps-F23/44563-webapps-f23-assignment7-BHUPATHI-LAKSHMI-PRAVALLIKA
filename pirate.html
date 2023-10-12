@@ -152,11 +152,15 @@
 
   <!-- 2.6 -->
 
-  <div id="getHelp" style="background-color: chartreuse;" onclick="help()">Click for help.</div>
+  <div id="getHelp" onclick="help()">Click for help.</div>
 
   <!-- 2.7 -->
 
   <div id="help" onclick="help()">Help report.</div><br>
+
+  <!-- BONUS -->
+
+  <div><button onclick="newGame()">New Game</button></div><br>
 
     <!-- 3.2 -->
 
@@ -250,8 +254,6 @@
 
    </div>
 
-   <br>
-
   <script>
 
    // 4.4
@@ -302,15 +304,15 @@
 
      if (position == treasureLocation) {
 
-      document.getElementById(id).src = "./image2.jpg";
+      document.getElementById(id).src = "image2.jpg";
 
      } else if (position == trapLocation) {
 
-      document.getElementById(id).src = "./image3.jpg";
+      document.getElementById(id).src = "image3.jpg";
 
      } else {
 
-      document.getElementById(id).src = "./image4.jpg";
+      document.getElementById(id).src = "image4.jpg";
 
      }
 
@@ -429,6 +431,48 @@
     document.getElementById("penalty").innerHTML =
 
      "Penalty is " + penalty + ".";
+
+   }
+
+   // BONUS
+
+   function newGame() {
+
+    // Reset variables
+
+    checkCount = 0;
+
+    penalty = 0;
+
+    lastCheck = 0;
+
+    gameOver = false;
+
+    // Randomly select new positions for trap and treasure
+
+    treasureLocation = Math.floor(Math.random() * 25);
+
+    trapLocation = Math.floor(Math.random() * 25);
+
+    // Reset images
+
+    for (let i = 0; i < ids.length; i++) {
+
+     document.getElementById(ids[i]).src = "./images/location.jpg";
+
+    }
+
+    // Update text
+
+    document.getElementById("locations").innerHTML =
+
+     "Number of locations checked is " + checkCount + ".";
+
+    document.getElementById("penalty").innerHTML =
+
+     "Penalty is " + penalty + ".";
+
+    // document.getElementById("getHelp").innerHTML = "Click for help.";
 
    }
 
