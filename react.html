@@ -108,7 +108,57 @@
 
    reactBtn.onclick = recordTime;
 
-   
+   function startTime() {
+
+const countdownStart = Math.floor(Math.random() * 9) + 2; // Random value between 2 and 10
+
+console.log(`Countdown starts from: ${countdownStart}`);
+
+for (let i = countdownStart; i >= 0; i--) {
+
+ setTimeout(function () {
+
+  const countElem = document.getElementById("counter");
+
+  countElem.innerHTML = i;
+
+ }, (countdownStart - i) * 1000);
+
+}
+
+setTimeout(function () {
+
+ if (reactTime === undefined) {
+
+  // User was too slow
+
+  const targetElement = document.getElementById("target");
+
+  targetElement.innerHTML = "Too Slow";
+
+ } else {
+
+  // User clicked in time
+
+  const endTime = Date.now();
+
+  const reactionTime = endTime - reactTime;
+
+  const targetElement = document.getElementById("target");
+
+  targetElement.innerHTML = `Reaction time: ${reactionTime} ms`;
+
+ }
+
+}, countdownStart * 1000);
+
+}
+
+const startTimerButton = document.getElementById("startTime");
+
+startTimerButton.onclick = startTime;s
+
+
   </script>
 
  </body>
