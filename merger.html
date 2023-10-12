@@ -125,7 +125,46 @@
      mergerItems[midIndex].remove();
     }
    }
-  
+  // BONUS
+   function swap() {
+    let mergerItems = document.getElementsByClassName("merger");
+    let itemsLength = mergerItems.length;
+    if (itemsLength < 2) {
+     alert("There are not enough elements to swap.");
+     return;
+    }
+    let randomIndex1 = getRandomIndex(itemsLength);
+    let randomIndex2 = getRandomIndex(itemsLength, randomIndex1);
+    if (randomIndex1 === randomIndex2) {
+     alert("Selected the same element. Nothing to swap.");
+     return;
+    }
+    let container = document.getElementById("target");
+    let item1 = mergerItems[randomIndex1];
+    let item2 = mergerItems[randomIndex2];
+    let nextItem1 = item1.nextElementSibling;
+    let nextItem2 = item2.nextElementSibling;
+    if (nextItem1 === item2) {
+     container.insertBefore(item2, item1);
+     container.insertBefore(item1, nextItem2);
+    }
+    else if (nextItem2 === item1) {
+     container.insertBefore(item1, item2);
+     container.insertBefore(item2, nextItem1);
+    }
+    else {
+     // Non-adjacent elements
+     container.insertBefore(item2, nextItem1);
+     container.insertBefore(item1, nextItem2);
+    }
+   }
+   function getRandomIndex(max, excludeIndex) {
+    let randomIndex;
+    do {
+     randomIndex = Math.floor(Math.random() * max);
+    } while (randomIndex === excludeIndex);
+    return randomIndex;
+   }
   </script>
  </body>
 </html>
